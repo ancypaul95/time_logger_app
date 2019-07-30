@@ -1,2 +1,25 @@
-<h1>Projects#show</h1>
-<p>Find me in app/views/projects/show.html.erb</p>
+<%#= link_to 'Back to Blogs', blogs_path, class: 'btn btn-primary text-light my-2' %> 
+<% if manager_or_employee %>
+  <article class="card">
+    <header class="card-title text-center my-3">
+      <h1><%= @project.name %></h1>
+    </header>
+    <section class="card-body">
+      <p>
+        <%= @project.description %>
+      </p>
+    </section>
+    <% if @project.manager == current_user %>
+      <footer class="card-footer">
+        <ul class="nav nav-pills card-header-pills float-left">
+          <li>
+            <%= link_to ' Edit', edit_project_path(@project), class: 'fa fa-pencil nav-link text-primary' %> 
+          </li>
+          <li>
+            <%= link_to ' Delete', @project, method: :delete, class: 'fa fa-trash nav-link text-danger', data: { confirm: 'Are you sure?' } %>
+          </li>
+        </ul>
+      </footer>
+    <% end %>
+  </article>
+<% end %>

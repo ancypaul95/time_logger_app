@@ -1,2 +1,36 @@
-<h1>Projects#index</h1>
-<p>Find me in app/views/projects/index.html.erb</p>
+<% if manager_or_employee %>
+  <% @projects.each do |project| %>
+    <% if current_user.manager? || (current_user.employee? && project.project_users.user == current_user) %>
+      <div class="row">
+        <article class="card col-md-12 col-lg-8 offset-lg-2 px-0 my-2">
+          <header class="card-title text-center p-2">
+            <%= project.name %>
+          </header>
+          <section class="card-body">
+            <p class="card-text blog__p--max-height">
+              <%= project.description %>
+            </p>
+            <div class="float-right">
+              <small>
+                <%= link_to 'Expand', project, class: "card-link" %>
+                <i class="fa fa-angle-double-right"></i>
+              </small>
+            </div>
+          </section>
+          <footer class="card-footer">
+            <ul class="nav nav-pills card-header-pills float-left">
+              <% if project.manager == current_user%>
+                <li class="nav-item">
+                  <%= link_to ' Edit', edit_project_path(project), class: 'fa fa-pencil nav-link text-primary' %>
+                </li>
+                <li class="nav-item">
+                  <%= link_to ' Delete', project, method: :delete, class: 'fa fa-trash nav-link text-danger', data: { confirm: 'Are you sure?' } %>
+                </li>
+                <% end %>
+            </ul>
+          </footer>
+        </article>
+      </div>
+    <% end %>
+  <% end %>
+<% end %>
