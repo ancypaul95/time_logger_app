@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_07_30_092559) do
+ActiveRecord::Schema.define(version: 2019_07_30_104408) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string "namespace"
@@ -34,8 +34,29 @@ ActiveRecord::Schema.define(version: 2019_07_30_092559) do
     t.datetime "remember_created_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "name", limit: 25
     t.index ["email"], name: "index_admin_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_admin_users_on_reset_password_token", unique: true
+  end
+
+  create_table "project_users", force: :cascade do |t|
+    t.float "time_log"
+    t.boolean "validate_log", default: false
+    t.integer "projects_id"
+    t.integer "users_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["projects_id"], name: "index_project_users_on_projects_id"
+    t.index ["users_id"], name: "index_project_users_on_users_id"
+  end
+
+  create_table "projects", force: :cascade do |t|
+    t.string "name"
+    t.string "description"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "manager_id"
+    t.index ["manager_id"], name: "index_projects_on_manager_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -47,6 +68,7 @@ ActiveRecord::Schema.define(version: 2019_07_30_092559) do
     t.integer "role"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "name", limit: 25
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end

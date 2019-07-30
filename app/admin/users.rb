@@ -1,9 +1,12 @@
+# frozen_string_literal: true
+
 ActiveAdmin.register User do
-  permit_params :email, :password, :password_confirmation, :role
+  permit_params :email, :password, :password_confirmation, :role, :name
 
   index do
     selectable_column
     id_column
+    column :name
     column :email
     column :role do |user|
       user.role.capitalize
@@ -11,8 +14,9 @@ ActiveAdmin.register User do
     actions
   end
 
-  show do 
+  show do
     attributes_table do
+      row :name
       row :email
       row :role
       row :created_at
@@ -24,6 +28,7 @@ ActiveAdmin.register User do
 
   form do |f|
     f.inputs do
+      f.input :name
       f.input :email
       f.input :role, as: :select, collection: User.roles.keys
       f.input :password
@@ -31,5 +36,4 @@ ActiveAdmin.register User do
     end
     f.actions
   end
-
 end
