@@ -1,0 +1,26 @@
+<article class="my-2">
+  <h3>
+    Hi <%= get_username %>,
+  </h3>
+  <section>
+    <strong>This is a sample work time log application</strong>
+    <p>
+      <h5 class="ml-5 pl-5">Your User Details</h5>
+      <div class="container">
+        <div class="row">
+          <div class="col-sm-2 text-right">User Name: </div>
+          <div class="col-sm-5 text-left"><%= current_user.name || '-' %></div>
+        </div>
+        <div class="row">
+          <div class="col-sm-2 text-right">Email: </div>
+          <div class="col-sm-5 text-left"><%= current_user.email %></div>
+        </div>
+        <div class="row">
+          <div class="col-sm-2 text-right">Role: </div>
+          <div class="col-sm-5 text-left"><%= current_user.role %></div>
+        </div>
+      </div>
+    </p>
+    <small><em>If you want to edit your information, contact admin</em></small>
+  </sction>
+</article>
