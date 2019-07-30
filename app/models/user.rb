@@ -6,6 +6,7 @@ class User < ApplicationRecord
 
   enum role: %i[manager employee]
   has_many :projects
+  has_many :projects, through: :project_users
 
   validates :role, presence: true
   before_create :correct_user

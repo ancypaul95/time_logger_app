@@ -17,10 +17,7 @@
               <%= link_to 'Create Project', new_project_path, class:"nav-item nav-link #{new_project_path == request.original_url ? 'active' : ''}" %>
             </li>
             <li class="nav-item">
-              <%= link_to 'Manage Projects', root_path, class: "nav-item nav-link #{root_path == request.original_url ? 'active' : ''}" %>
-            </li>
-            <li class="nav-item">
-              <%= link_to 'Validate Time', root_path, class:"nav-item nav-link #{request.original_url.include?(root_path) ? 'active' : ''}" %>
+              <%= link_to 'Manage Projects', projects_path, class: "nav-item nav-link #{projects_path == request.original_url ? 'active' : ''}" %>
             </li>
           <% else %>
             <li class="nav-item">

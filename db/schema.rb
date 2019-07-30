@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_07_30_104408) do
+ActiveRecord::Schema.define(version: 2019_07_30_135900) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string "namespace"
@@ -42,12 +42,12 @@ ActiveRecord::Schema.define(version: 2019_07_30_104408) do
   create_table "project_users", force: :cascade do |t|
     t.float "time_log"
     t.boolean "validate_log", default: false
-    t.integer "projects_id"
-    t.integer "users_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["projects_id"], name: "index_project_users_on_projects_id"
-    t.index ["users_id"], name: "index_project_users_on_users_id"
+    t.integer "user_id"
+    t.integer "project_id"
+    t.index ["project_id"], name: "index_project_users_on_project_id"
+    t.index ["user_id"], name: "index_project_users_on_user_id"
   end
 
   create_table "projects", force: :cascade do |t|
